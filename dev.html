@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulador 3D de retenciones de tráfico</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./lib/three.module.js"
+      }
+    }
+  </script>
 </head>
 <body>
   <header id="topbar">
@@ -98,9 +105,6 @@
     </aside>
   </main>
 
-  <!-- Versión empaquetada (dist/bundle.js): funciona abriendo el fichero con
-       doble clic, sin servidor. Para desarrollar sobre js/*.js usa dev.html
-       con un servidor estático, o regenera el bundle con `npm run build`. -->
-  <script defer src="dist/bundle.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

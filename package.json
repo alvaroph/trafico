@@ -4,6 +4,7 @@
   "description": "Simulador 3D de retenciones de tráfico (Three.js)",
   "type": "module",
   "scripts": {
-    "start": "npx -y serve ."
+    "start": "npx -y serve .",
+    "build": "npx -y esbuild js/main.js --bundle --format=iife --alias:three=./lib/three.module.js --outfile=dist/bundle.js"
   }
 }

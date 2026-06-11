@@ -8,18 +8,29 @@ acumulada en una autopista de varios carriles.
 
 ## Cómo ejecutarlo
 
-No necesita backend ni base de datos, pero al usar módulos ES hay que servirlo
-con un servidor estático cualquiera (Three.js está incluido en `lib/`):
+**Abre `index.html` con doble clic** en un navegador moderno. No necesita
+backend, base de datos, conexión a internet ni servidor: `index.html` carga
+el paquete ya construido en `dist/bundle.js` (Three.js incluido).
+
+### Para desarrollar
+
+El código fuente está en `js/*.js` como módulos ES. Los módulos no funcionan
+con `file://`, así que para trabajar sobre las fuentes usa `dev.html` con un
+servidor estático cualquiera:
 
 ```bash
 # opción 1 (Python)
 python3 -m http.server 8000
-
 # opción 2 (Node)
 npx serve .
 ```
 
-Y abrir `http://localhost:8000` en un navegador moderno.
+y abre `http://localhost:8000/dev.html`. Cuando termines, regenera el
+paquete de `index.html` con:
+
+```bash
+npm run build
+```
 
 ## Qué se puede hacer
 
