@@ -1,0 +1,9 @@
+{
+  "name": "trafico",
+  "version": "1.0.0",
+  "description": "Simulador 3D de retenciones de tráfico (Three.js)",
+  "type": "module",
+  "scripts": {
+    "start": "npx -y serve ."
+  }
+}
