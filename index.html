@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador 3D de retenciones de tráfico</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="topbar">
+    <h1>🚗 Simulador 3D de retenciones</h1>
+    <div id="metrics">
+      <div class="chip"><span class="label">Tiempo</span><span id="mTime">0:00</span></div>
+      <div class="chip"><span class="label">Vehículos</span><span id="mVehicles">0</span></div>
+      <div class="chip"><span class="label">Vel. media</span><span id="mSpeed">–</span></div>
+      <div class="chip"><span class="label">Detenidos</span><span id="mStopped">0</span></div>
+      <div class="chip"><span class="label">Cola</span><span id="mQueue">0 m</span></div>
+      <div class="chip"><span class="label">Cola máx</span><span id="mMaxQueue">0 m</span></div>
+      <div class="chip"><span class="label">Caudal (km 3)</span><span id="mFlow">0 veh/h</span></div>
+      <div class="chip"><span class="label">Densidad</span><span id="mDensity">0 veh/km</span></div>
+      <div class="chip"><span class="label">T. perdido</span><span id="mLost">0 min</span></div>
+      <div class="chip"><span class="label">T. viaje medio</span><span id="mTravel">–</span></div>
+    </div>
+  </header>
+
+  <main>
+    <div id="viewport">
+      <div id="legend">
+        <span><i style="background:#2ecc71"></i> Fluido</span>
+        <span><i style="background:#f1c40f"></i> Denso</span>
+        <span><i style="background:#e67e22"></i> Congestión</span>
+        <span><i style="background:#e74c3c"></i> Retención</span>
+      </div>
+      <div id="hint">
+        Ratón: rotar / rueda: zoom / botón dcho.: pan · Teclas ←/→ o A/D: moverse por la carretera.
+        Los eventos se colocan en el punto que mira la cámara.
+      </div>
+    </div>
+
+    <aside id="panel">
+      <section>
+        <h2>Simulación</h2>
+        <div class="btn-row">
+          <button id="btnStart">⏸ Pausar</button>
+          <button id="btnReset">↺ Reiniciar</button>
+        </div>
+        <button id="btnView" class="wide">🎥 Vista: general</button>
+        <label>Velocidad de simulación <output id="rngSpeedOut"></output>
+          <input type="range" id="rngSpeed" min="0.25" max="4" step="0.25" value="1" />
+        </label>
+      </section>
+
+      <section>
+        <h2>Tráfico</h2>
+        <label>Flujo de entrada <output id="rngFlowOut"></output>
+          <input type="range" id="rngFlow" min="500" max="6000" step="100" value="3000" />
+        </label>
+        <label>Camiones <output id="rngTrucksOut"></output>
+          <input type="range" id="rngTrucks" min="0" max="60" step="5" value="15" />
+        </label>
+        <label>Carriles (reinicia) <output id="rngLanesOut"></output>
+          <input type="range" id="rngLanes" min="2" max="4" step="1" value="3" />
+        </label>
+        <label>Velocidad máxima <output id="rngLimitOut"></output>
+          <input type="range" id="rngLimit" min="60" max="140" step="10" value="120" />
+        </label>
+        <label>Agresividad media <output id="rngAggrOut"></output>
+          <input type="range" id="rngAggr" min="0" max="100" step="5" value="50" />
+        </label>
+        <label>Intensidad efecto badoc <output id="rngBadocOut"></output>
+          <input type="range" id="rngBadoc" min="0" max="200" step="10" value="100" />
+        </label>
+        <label class="check"><input type="checkbox" id="chkTrucksOvertake" checked />
+          Los camiones pueden adelantar</label>
+        <label class="check"><input type="checkbox" id="chkRain" />
+          Lluvia (menos velocidad, más distancia)</label>
+      </section>
+
+      <section>
+        <h2>Añadir eventos</h2>
+        <div class="btn-grid">
+          <button id="btnBottleneck">⛔ Cuello de botella</button>
+          <button id="btnStopped">🚙 Vehículo parado</button>
+          <button id="btnShoulder">🅿️ Vehículo en arcén</button>
+          <button id="btnAccident">💥 Accidente</button>
+          <button id="btnBadoc">👀 Efecto badoc</button>
+          <button id="btnBrake">🛑 Frenada brusca</button>
+          <button id="btnWorks">🚧 Obras</button>
+          <button id="btnTrucksPlus">🚛 +10% camiones</button>
+        </div>
+        <button id="btnClear" class="wide danger">🧹 Limpiar eventos</button>
+      </section>
+
+      <section>
+        <h2>Eventos activos</h2>
+        <ul id="eventList"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Versión empaquetada (dist/bundle.js): funciona abriendo el fichero con
+       doble clic, sin servidor. Para desarrollar sobre js/*.js usa dev.html
+       con un servidor estático, o regenera el bundle con `npm run build`. -->
+  <script defer src="dist/bundle.js"></script>
+</body>
+</html>
